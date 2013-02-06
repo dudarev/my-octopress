@@ -9,7 +9,7 @@ article {
     @include box-shadow(rgba(#000, .15) 0 1px 4px);
     @include box-sizing(border-box);
     display: block;
-    margin: 0 auto 1.5em;
+    margin: 0 auto;
   }
   img {
     &.left { float: left; margin-right: 1.5em; }

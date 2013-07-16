@@ -8,6 +8,7 @@ ssh_user       = "dudarevc@dudarev.com"
 document_root  = "~/public_html/blog"
 ssh_port       = "22"
 rsync_delete   = false
+rsync_args     = ""
 deploy_default = "rsync"
 
 # This will be configured for you when you run config_deploy

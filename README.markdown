@@ -8,12 +8,13 @@ To make a post:
 
 ```
 rake preview
-rake rsync
+rake s3
 ```
 
 ## Updating
 
 ```bash
+# source is modified - merge carefuly!
 git pull octopress master     # Get the latest Octopress
 bundle install                # Keep gems updated
 rake update_source            # update the template's source

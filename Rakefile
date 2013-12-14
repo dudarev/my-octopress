@@ -11,6 +11,15 @@ rsync_delete   = false
 rsync_args     = ""
 deploy_default = "rsync"
 
+## -- S3 Deploy Config -- ##
+# Requires s3cmd. `brew install s3cmd` or see http:/s3tools.org/download 
+# http://justajot.com/blog/2013/07/11/octopress-on-s3/
+# http://blog.jacobelder.com/2012/03/deploying-octopress-to-amazon-s3/
+
+s3_bucket = "dudarev.com"
+s3_prefix = "blog"
+s3_delete = false
+
 # This will be configured for you when you run config_deploy
 deploy_branch  = "gh-pages"
 
@@ -233,6 +242,13 @@ task :copydot, :source, :dest do |t, args|
     cp_r file, file.gsub(/#{args.source}/, "#{args.dest}") unless File.directory?(file)
   end
 end
+
+desc "Deploy website to Amazon S3"
+task :s3 do
+  puts "## Deploying website via s3cmd"
+  exclude = File.exists?("./s3-exclude") ? "--exclude-from '#{File.expand_path('./s3-exclude')}'" : ""
+  ok_failed system("s3cmd sync --guess-mime-type --acl-public #{exclude} #{'--delete-removed' unless s3_delete == false} #{public_dir}/ s3://#{s3_bucket}/#{s3_prefix}/") 
+end     
 
 desc "Deploy website via rsync"
 task :rsync do

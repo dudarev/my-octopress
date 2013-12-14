@@ -28,3 +28,17 @@ article {
       }
   }
 }
+
+#markdown-toc:before {
+  content: "Table of Contents";
+  font-weight: bold;
+}
+
+ul#markdown-toc {
+  margin-top: 1em;
+  margin-left: 1em;
+  list-style: none;
+  float: right;
+  @include shadow-box;
+  background-color: white;
+}
